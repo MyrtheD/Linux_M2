@@ -1,0 +1,19 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <!-- ... (unchanged) ... -->
+<h1>title</h1>    
+<script>
+      // fetch user from API
+      fetch("http://mdanfastapi/user")
+        .then((res) => res.json())
+        .then((data) => {
+          // get user name
+          const user = data.name;
+          // display user name
+          document.getElementById("user").innerText = user;
+        });
+    </script>
+  </body>
+</html>
+

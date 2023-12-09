@@ -1,0 +1,36 @@
+FROM python:3.9
+
+# 
+COPY ./app /app
+
+# 
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+------------------
+
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.8
+
+COPY ./app /app
+
+------------------
+
+
+
+FROM python:3.9
+
+# 
+WORKDIR /mdanfastapi
+
+# 
+COPY ./requirements.txt /mdanfastapi/requirements.txt
+
+# 
+RUN pip install --no-cache-dir --upgrade -r /mdanfastapi/requirements.txt
+RUN pip install uvicorn
+
+# 
+COPY ./app /mdanfastapi/app
+
+# 
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
